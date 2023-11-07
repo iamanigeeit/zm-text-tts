@@ -10,9 +10,9 @@ n_fft=1024
 n_shift=256
 
 ################################## Configs to be set ##################################
-token_type=byte                 # byte, phn
+token_type=phn                 # byte, phn
 use_mailabs=false               # whether to use m_ailabs dataset
-use_css10=true                  # whether to use css10 dataset
+use_css10=false                  # whether to use css10 dataset
 use_lid=false                   # whether to use language id
 use_lvector=false               # whether to use lang2vec-derived language vector
 mos_filtering=false             # whether to filter out low-quality samples
@@ -29,7 +29,7 @@ local_data_opts=""
 local_data_opts+=" --token_type ${token_type}"
 local_data_opts+=" --use_mailabs ${use_mailabs}"
 local_data_opts+=" --use_css10 ${use_css10}"
-local_data_opts+=" --use_other_tts_data ${use_other_tts_data}"
+local_data_opts+=" --use_other_tts_data true"
 local_data_opts+=" --mos_filtering ${mos_filtering}"
 local_data_opts+=" --byte_len_filtering ${byte_len_filtering}"
 local_data_opts+=" --lang_set ${lang_set}"
@@ -91,7 +91,7 @@ test_sets=test
     --g2p "${g2p}" \
     --train_config "${train_config}" \
     --inference_config "${inference_config}" \
-    --inference_model valid.loss.best.pth \
+    --inference_model latest.pth \
     --min_wav_duration 0.1 \
     --max_wav_duration 15 \
     --train_set "${train_set}" \
